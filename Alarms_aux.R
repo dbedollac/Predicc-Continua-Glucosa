@@ -1,0 +1,32 @@
+ALARMS_aux<-function(serie,m,Horizon=6,th=70){
+
+  A0_p1<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"p1",Upper = m$upper$U5,Lower = m$lower$L5,th=th))
+  A5<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U5,Lower = m$lower$L5,th=th))
+  A10<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U10,Lower = m$lower$L10,th=th))
+  A15<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U15,Lower = m$lower$L15,th=th))
+  A20<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U20,Lower = m$lower$L20,th=th))
+  A25<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U25,Lower = m$lower$L25,th=th))
+  A30<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U30,Lower = m$lower$L30,th=th))
+  A35<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U35,Lower = m$lower$L35,th=th))
+  A40<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U40,Lower = m$lower$L40,th=th))
+  A45<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U45,Lower = m$lower$L45,th=th))
+  A50<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U50,Lower = m$lower$L50,th=th))
+  A55<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U55,Lower = m$lower$L55,th=th))
+  A60<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U60,Lower = m$lower$L60,th=th))
+  A65<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U65,Lower = m$lower$L65,th=th))
+  A70<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U70,Lower = m$lower$L70,th=th))
+  A75<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U75,Lower = m$lower$L75,th=th))
+  A80<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U80,Lower = m$lower$L80,th=th))
+  A85<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U85,Lower = m$lower$L85,th=th))
+  A90<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U90,Lower = m$lower$L90,th=th))
+  A95<-ALARMS.class(Hypo_ident(serie,th=th),Hypo_predict(m$forecast,Horizon=Horizon,"I1",Upper = m$upper$U95,Lower = m$lower$L95,th=th))
+  
+  A_fa<-c(A0_p1$FalsePositive%>%length(),A5$FalsePositive%>%length(),A10$FalsePositive%>%length(),A15$FalsePositive%>%length(),A20$FalsePositive%>%length(),A25$FalsePositive%>%length(),A30$FalsePositive%>%length(),A35$FalsePositive%>%length(),A40$FalsePositive%>%length(),A45$FalsePositive%>%length(),A50$FalsePositive%>%length(),A55$FalsePositive%>%length(),A60$FalsePositive%>%length(),A65$FalsePositive%>%length(),A70$FalsePositive%>%length(),A75$FalsePositive%>%length(),A80$FalsePositive%>%length(),A85$FalsePositive%>%length(),A90$FalsePositive%>%length(),A95$FalsePositive%>%length())
+  A_ta<-c(A0_p1$TruePositive%>%length(),A5$TruePositive%>%length(),A10$TruePositive%>%length(),A15$TruePositive%>%length(),A20$TruePositive%>%length(),A25$TruePositive%>%length(),A30$TruePositive%>%length(),A35$TruePositive%>%length(),A40$TruePositive%>%length(),A45$TruePositive%>%length(),A50$TruePositive%>%length(),A55$TruePositive%>%length(),A60$TruePositive%>%length(),A65$TruePositive%>%length(),A70$TruePositive%>%length(),A75$TruePositive%>%length(),A80$TruePositive%>%length(),A85$TruePositive%>%length(),A90$TruePositive%>%length(),A95$TruePositive%>%length())
+  A_me<-c(A0_p1$Missed_Events%>%length(),A5$Missed_Events%>%length(),A10$Missed_Events%>%length(),A15$Missed_Events%>%length(),A20$Missed_Events%>%length(),A25$Missed_Events%>%length(),A30$Missed_Events%>%length(),A35$Missed_Events%>%length(),A40$Missed_Events%>%length(),A45$Missed_Events%>%length(),A50$Missed_Events%>%length(),A55$Missed_Events%>%length(),A60$Missed_Events%>%length(),A65$Missed_Events%>%length(),A70$Missed_Events%>%length(),A75$Missed_Events%>%length(),A80$Missed_Events%>%length(),A85$Missed_Events%>%length(),A90$Missed_Events%>%length(),A95$Missed_Events%>%length())
+  A_rt<-c(A0_p1$ReactionTime%>%mean(,na.rm=TRUE),A5$ReactionTime%>%mean(,na.rm=TRUE),A10$ReactionTime%>%mean(,na.rm=TRUE),A15$ReactionTime%>%mean(,na.rm=TRUE),A20$ReactionTime%>%mean(,na.rm=TRUE),A25$ReactionTime%>%mean(,na.rm=TRUE),A30$ReactionTime%>%mean(,na.rm=TRUE),A35$ReactionTime%>%mean(,na.rm=TRUE),A40$ReactionTime%>%mean(,na.rm=TRUE),A45$ReactionTime%>%mean(,na.rm=TRUE),A50$ReactionTime%>%mean(,na.rm=TRUE),A55$ReactionTime%>%mean(,na.rm=TRUE),A60$ReactionTime%>%mean(,na.rm=TRUE),A65$ReactionTime%>%mean(,na.rm=TRUE),A70$ReactionTime%>%mean(,na.rm=TRUE),A75$ReactionTime%>%mean(,na.rm=TRUE),A80$ReactionTime%>%mean(,na.rm=TRUE),A85$ReactionTime%>%mean(,na.rm=TRUE),A90$ReactionTime%>%mean(,na.rm=TRUE),A95$ReactionTime%>%mean(,na.rm=TRUE))
+  A_dr<-c(A0_p1$DangerousRate,A5$DangerousRate,A10$DangerousRate,A15$DangerousRate,A20$DangerousRate,A25$DangerousRate,A30$DangerousRate,A35$DangerousRate,A40$DangerousRate,A45$DangerousRate,A50$DangerousRate,A55$DangerousRate,A60$DangerousRate,A65$DangerousRate,A70$DangerousRate,A75$DangerousRate,A80$DangerousRate,A85$DangerousRate,A90$DangerousRate,A95$DangerousRate)
+  A_results<-rbind(A_fa,A_ta,A_me,A_rt,A_dr)  
+  
+  return(list(A = A_results, HypoglycemiaObs = A0_p1$HypoObs))
+}
