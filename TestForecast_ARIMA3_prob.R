@@ -1,4 +1,4 @@
-Test.Forecast3<-function(serie,Nobs=288,Track=TRUE,Anderson = FALSE, Parsimony = TRUE, BoxJenkins = TRUE,Horizon=12,InformationCriterion = "AIC",wndow=96, Transform=TRUE){
+Test.Forecast3_prob<-function(serie,Nobs=288,Track=TRUE,Anderson = FALSE, Parsimony = TRUE, BoxJenkins = TRUE,Horizon=12,InformationCriterion = "AIC",wndow=96, Transform=TRUE){
   if(length(serie)>=((Nobs-1)+wndow)){
     s<-serie
     f_DM<-matrix(data = NA,ncol = Horizon ,nrow = Nobs)
@@ -57,13 +57,13 @@ Test.Forecast3<-function(serie,Nobs=288,Track=TRUE,Anderson = FALSE, Parsimony =
       start_time<-Sys.time()
       m<-ARIMA(x,plot = FALSE,Anderson = Anderson, Parsimony = Parsimony, BoxJenkins = BoxJenkins, InformationCriterion = InformationCriterion, transform=Transform)
       lambdas<-c(lambdas,m$BoxCox_lambda)
-      mf<-forecast(m$model, h=Horizon,level=level,lambda = m$BoxCox_lambda, biasadj = TRUE)
+      mf<-forecast(m$model, h=Horizon,level=level)
       End_time<-Sys.time()
       alg_time<-c(alg_time,as.numeric(difftime(End_time,start_time, units = "secs")))
       Parameters_no<-c(Parameters_no,length(m$model$coef))
       
       if(Track==TRUE){track<-rbind(track,arimaorder(m$model));fit<-c(fit,m$FIT)}
-
+      
       f_DM[time,]<-coredata(mf$mean)
       
       L_DM5[time,]<-coredata(mf$lower[,1])
@@ -105,7 +105,7 @@ Test.Forecast3<-function(serie,Nobs=288,Track=TRUE,Anderson = FALSE, Parsimony =
       U_DM85[time,]<-coredata(mf$upper[,17])
       U_DM90[time,]<-coredata(mf$upper[,18])
       U_DM95[time,]<-coredata(mf$upper[,19])
-
+      
       s<-s[-1]
       time<-time+1
     }
@@ -197,7 +197,7 @@ Test.Forecast3<-function(serie,Nobs=288,Track=TRUE,Anderson = FALSE, Parsimony =
       U_DM90[,i]<-lag(U_DM90[,i],k=i-1)
       U_DM95[,i]<-lag(U_DM95[,i],k=i-1)
       
-      }
+    }
     
     L_DM<-list(L5=L_DM5,L10=L_DM10,L15=L_DM15,L20=L_DM20,L25=L_DM25,L30=L_DM30,L35=L_DM35,L40=L_DM40,L45=L_DM45,L50=L_DM50,L55=L_DM55,L60=L_DM60,L65=L_DM65,L70=L_DM70,L75=L_DM75,L80=L_DM80,L85=L_DM85,L90=L_DM90,L95=L_DM95)
     U_DM<-list(U5=U_DM5,U10=U_DM10,U15=U_DM15,U20=U_DM20,U25=U_DM25,U30=U_DM30,U35=U_DM35,U40=U_DM40,U45=U_DM45,U50=U_DM50,U55=U_DM55,U60=U_DM60,U65=U_DM65,U70=U_DM70,U75=U_DM75,U80=U_DM80,U85=U_DM85,U90=U_DM90,U95=U_DM95)

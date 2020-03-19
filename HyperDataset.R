@@ -45,18 +45,18 @@ for(i in 1:length(PaxID)){
   
       obs<-DatosEmc[c((which(index(DatosEmc)==last(first(DatosEmc,wndow+1),1)%>%index())+(6-1)):length(DatosEmc))]
     
-    if(is.error(III<-Test.Forecast3(DatosEmc,Parsimony = TRUE,BoxJenkins = TRUE,Anderson = FALSE,Nobs = length(obs), wndow = 12*hours, Transform = TRUE))){error<-c(error,PaxID[i])}else{
+    if(is.error(III<-Test.Forecast3_prob(DatosEmc,Parsimony = TRUE,BoxJenkins = TRUE,Anderson = FALSE,Nobs = length(obs), wndow = 12*hours, Transform = TRUE))){error<-c(error,PaxID[i])}else{
       
       meausures_III<-rbind(meausures_III,III$Measures[6,])
       
-      aux<-ALARMS_aux(obs,III,Horizon = 6,th=70)
+      aux<-ALARMS_aux_prob(obs,III,Horizon = 6,th=70)
       M_FalseAlarmas_III<-rbind(M_FalseAlarmas_III,aux$A[1,])
       M_TrueAlarms_III<-rbind(M_TrueAlarms_III,aux$A[2,])
       M_MissedEvents_III<-rbind(M_MissedEvents_III,aux$A[3,])
       M_ReactionTime_III<-rbind(M_ReactionTime_III,aux$A[4,])
       M_HypoObs<-aux$HypoglycemiaObs
       
-      aux<-ALARMS_aux(obs,III,Horizon = 6,th=54)
+      aux<-ALARMS_aux_prob(obs,III,Horizon = 6,th=54)
       S_FalseAlarmas_III<-rbind(S_FalseAlarmas_III,aux$A[1,])
       S_TrueAlarms_III<-rbind(S_TrueAlarms_III,aux$A[2,])
       S_MissedEvents_III<-rbind(S_MissedEvents_III,aux$A[3,])
@@ -65,17 +65,17 @@ for(i in 1:length(PaxID)){
       
       print(c(i,"III"))}
 
-      if(is.error(III_st<-Test.Forecast3(DatosEmc,Parsimony = TRUE,BoxJenkins = TRUE,Anderson = FALSE,Nobs = length(obs), wndow = 12*hours, Transform = FALSE))){error<-c(error,PaxID[i])}else{
+      if(is.error(III_st<-Test.Forecast3_prob(DatosEmc,Parsimony = TRUE,BoxJenkins = TRUE,Anderson = FALSE,Nobs = length(obs), wndow = 12*hours, Transform = FALSE))){error<-c(error,PaxID[i])}else{
         
         meausures_III_st<-rbind(meausures_III_st,III_st$Measures[6,])
         
-        aux<-ALARMS_aux(obs,III_st,Horizon = 6,th=70)
+        aux<-ALARMS_aux_prob(obs,III_st,Horizon = 6,th=70)
         M_FalseAlarmas_III_st<-rbind(M_FalseAlarmas_III_st,aux$A[1,])
         M_TrueAlarms_III_st<-rbind(M_TrueAlarms_III_st,aux$A[2,])
         M_MissedEvents_III_st<-rbind(M_MissedEvents_III_st,aux$A[3,])
         M_ReactionTime_III_st<-rbind(M_ReactionTime_III_st,aux$A[4,])
 
-        aux<-ALARMS_aux(obs,III_st,Horizon = 6,th=54)
+        aux<-ALARMS_aux_prob(obs,III_st,Horizon = 6,th=54)
         S_FalseAlarmas_III_st<-rbind(S_FalseAlarmas_III_st,aux$A[1,])
         S_TrueAlarms_III_st<-rbind(S_TrueAlarms_III_st,aux$A[2,])
         S_MissedEvents_III_st<-rbind(S_MissedEvents_III_st,aux$A[3,])
