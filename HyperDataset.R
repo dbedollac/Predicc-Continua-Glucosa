@@ -39,7 +39,8 @@ error<-NULL
 
 colnames(Sample)<-c(PaxID,PaxID)
 
-for(i in 1:length(PaxID)){
+for(i in 28:length(PaxID)){
+  if(i!=37){
       try<-xts(as.numeric(Sample[,i+length(PaxID)]), order.by = as.POSIXct(Sample[,i],tz="", format="%Y-%m-%d %H:%M:%OS"))
       DatosEmc<-na.omit(try)
   
@@ -87,5 +88,5 @@ for(i in 1:length(PaxID)){
     Pax_Features[i,3]<-S_HypoObs
     
     print(error)
-  
+  }
 }

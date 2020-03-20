@@ -160,14 +160,16 @@ Hypo_predict<-function(Estimation,Criterio="p1",Horizon=6,Upper=NULL,Lower=NULL,
     s[b]<-1
     
     Th<-NULL
-    for(i in 1:length(Lambdas)){
-      if(length(Lambdas)>0){
-     Th[i]<-BoxCox(th,Lambdas[i])}else{Th[i]<-th}
-    }
+    if(length(Lambdas)>0){
+      for(i in 1:length(Lambdas)){
+          Th[i]<-BoxCox(th,Lambdas[i])
+      }
+    }else{Th<-rep(th,length(fH))}
+    
     
     for(i in 1:length(fH)-1){
-      p1<-pnorm(th[i],fH[i],s[i])
-      p2<-pnorm(th[i+1],fH[i+1],s[i+1])
+      p1<-pnorm(Th[i],fH[i],s[i])
+      p2<-pnorm(Th[i+1],fH[i+1],s[i+1])
       T1<-isTRUE(p1<=prob)
       T2<-isTRUE(p2>prob)
 
@@ -185,7 +187,7 @@ Hypo_predict<-function(Estimation,Criterio="p1",Horizon=6,Upper=NULL,Lower=NULL,
         
         while(T){
         aux<-Alarms[i]+60*(Horizon)*5+count*5*60
-        p<-pnorm(th[i+Horizon+count],fH[aux],s[aux])
+        p<-pnorm(Th[i+Horizon+count],fH[aux],s[aux])
         T<-isTRUE(p>prob)
         count<-count+1
         }
