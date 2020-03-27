@@ -1,13 +1,13 @@
-FalseAlarms<-S_FalseAlarmas_III
-TrueAlarms<-S_TrueAlarms_III
-MissedEvents<-S_MissedEvents_III
-ReactionTime<-S_ReactionTime_III
+FalseAlarms<-M_FalseAlarmas_III
+TrueAlarms<-M_TrueAlarms_III
+MissedEvents<-M_MissedEvents_III
+ReactionTime<-M_ReactionTime_III
 measures_III<-meausures_III[-37,]
 
-FalseAlarms_st<-S_FalseAlarmas_III_st
-TrueAlarms_st<-S_TrueAlarms_III_st
-MissedEvents_st<-S_MissedEvents_III_st
-ReactionTime_st<-S_ReactionTime_III_st
+FalseAlarms_st<-M_FalseAlarmas_III_st
+TrueAlarms_st<-M_TrueAlarms_III_st
+MissedEvents_st<-M_MissedEvents_III_st
+ReactionTime_st<-M_ReactionTime_III_st
 measures_III_st<-meausures_III_st
 
 colnames(FalseAlarms)<-c("p1",seq(5,95,5))
@@ -46,9 +46,9 @@ lines(x=seq(0,95,5),y=False_rate,col="lightseagreen",type="b")
 legend(x="bottomleft",legend = c("III_st","III"),col=c("blue","lightseagreen"),lty = c(1,1),pt.cex = 1,bty="n",y.intersp = 1)
 
 aux_alarmas<-FalseAlarms+TrueAlarms
-PromedioAlarmas_WoA_Pars<-colSums(aux_alarmas,na.rm = TRUE)/120
+PromedioAlarmas_WoA_Pars<-colSums(aux_alarmas,na.rm = TRUE)/119
 aux_alarmas<-FalseAlarms_st+TrueAlarms_st
-PromedioAlarmas_WoA_Pars_st<-colSums(aux_alarmas,na.rm = TRUE)/120
+PromedioAlarmas_WoA_Pars_st<-colSums(aux_alarmas,na.rm = TRUE)/119
 barplot(rbind(PromedioAlarmas_WoA_Pars,PromedioAlarmas_WoA_Pars_st),main="(C) Alarmas diarias promedio",xlab = "Niveles de predicción",col=c("lightseagreen","blue"),ylim = c(0,8),beside = TRUE,names.arg = seq(0,95,5),cex.main=1,ylab="")
 legend(x="topleft",legend = c("III","III_st"),col=c("lightseagreen","blue"),lty = c(1,1),pt.cex = 1,bty="n",y.intersp = 1)
 
